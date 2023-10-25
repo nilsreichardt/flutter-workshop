@@ -6,15 +6,9 @@ class ShoppingList {
   ShoppingList() : items = [];
 
   void addItem({
-    required String name,
+    required ShoppingListItem item,
   }) {
-    items.add(
-      ShoppingListItem(
-        id: _nextId++,
-        name: name,
-        isBought: false,
-      ),
-    );
+    items.add(item);
   }
 
   void clear() {
@@ -25,11 +19,13 @@ class ShoppingList {
 class ShoppingListItem {
   final int id;
   final String name;
+  final String reason;
   bool isBought;
 
   ShoppingListItem({
     required this.id,
     required this.name,
     required this.isBought,
+    required this.reason,
   });
 }

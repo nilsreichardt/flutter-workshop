@@ -15,9 +15,12 @@ class CreateNewItemForm extends StatefulWidget {
 }
 
 class _CreateNewItemFormState extends State<CreateNewItemForm> {
+  late TextEditingController controller;
+
   @override
   void initState() {
     super.initState();
+    controller = TextEditingController();
   }
 
   @override
@@ -39,6 +42,7 @@ class _CreateNewItemFormState extends State<CreateNewItemForm> {
               child: Column(
                 children: [
                   TextFormField(
+                    controller: controller,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter a daily goal';
@@ -65,8 +69,13 @@ class _CreateNewItemFormState extends State<CreateNewItemForm> {
 
                 widget.shoppingList.clear();
 
+                final items = await createDayPlan(controller.text);
                 for (final item in items) {
-                  widget.shoppingList;
+                  widget.shoppingList.addItem(item: item);
+                }
+
+                if (!mounted) {
+                  return;
                 }
 
                 Navigator.of(context).pop();
