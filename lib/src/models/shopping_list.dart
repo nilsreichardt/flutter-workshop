@@ -1,9 +1,10 @@
 class ShoppingList {
   final List<ShoppingListItem> items;
+  final String goal;
 
   static int _nextId = 0;
 
-  ShoppingList() : items = [];
+  ShoppingList(this.goal) : items = [];
 
   void addItem({
     required ShoppingListItem item,
