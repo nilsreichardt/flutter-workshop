@@ -13,14 +13,14 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  ShoppingList _shoppingList = ShoppingList();
+  ShoppingList _shoppingList = ShoppingList("");
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
+        title: Text(_shoppingList.goal),
       ),
       body: ShoppingListView(
         shoppingList: _shoppingList,
