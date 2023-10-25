@@ -1,4 +1,5 @@
 import 'package:chat_gpt_sdk/chat_gpt_sdk.dart';
+import 'package:retry/retry.dart';
 
 String getPrompt(String dailyGoal) {
   return '''You are a bad life coach. Your goal is to give bad advice to your clients.
@@ -23,19 +24,24 @@ Future<void> main() async {
 
 Future<String> getGptResponse(String prompt) async {
   final token = '...';
-  final openAI = OpenAI.instance.build(
-    token: token,
-    baseOption: HttpSetup(
-      receiveTimeout: const Duration(seconds: 5),
-    ),
-    enableLog: true,
-  );
-  final request = CompleteText(
-    prompt: prompt,
-    model: TextDavinci3Model(),
-    maxTokens: 2000,
-  );
+  return retry(
+    () async {
+      final openAI = OpenAI.instance.build(
+        token: token,
+        baseOption: HttpSetup(
+          receiveTimeout: const Duration(seconds: 5),
+        ),
+        enableLog: true,
+      );
+      final request = CompleteText(
+        prompt: prompt,
+        model: TextDavinci3Model(),
+        maxTokens: 2000,
+      );
 
-  final response = await openAI.onCompletion(request: request);
-  return response!.choices.first.text.trim();
+      final response = await openAI.onCompletion(request: request);
+      return response!.choices.first.text.trim();
+    },
+    maxAttempts: 3,
+  );
 }
