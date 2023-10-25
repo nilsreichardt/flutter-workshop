@@ -26,6 +26,7 @@ class _MyHomePageState extends State<MyHomePage> {
         shoppingList: _shoppingList,
       ),
       floatingActionButton: FloatingActionButton(
+        tooltip: 'Set daily goal',
         onPressed: () async {
           await Navigator.of(context).push<(int, String)>(
             MaterialPageRoute(
