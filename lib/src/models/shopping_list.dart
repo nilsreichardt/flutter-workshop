@@ -1,6 +1,6 @@
 class ShoppingList {
   final List<ShoppingListItem> items;
-  final String goal;
+  String goal;
 
   static int _nextId = 0;
 

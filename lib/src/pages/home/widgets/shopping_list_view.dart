@@ -11,6 +11,10 @@ class ShoppingListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (shoppingList.items.isEmpty) {
+      return const _EmptyState();
+    }
+
     return ListView.builder(
       itemCount: shoppingList.items.length,
       itemBuilder: (context, index) {
@@ -20,6 +24,25 @@ class ShoppingListView extends StatelessWidget {
           item: item,
         );
       },
+    );
+  }
+}
+
+class _EmptyState extends StatelessWidget {
+  const _EmptyState({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(32),
+      child: Center(
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(16),
+          child: Image.asset(
+            'assets/images/empty-state.png',
+          ),
+        ),
+      ),
     );
   }
 }

@@ -20,7 +20,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(_shoppingList.goal),
+        title: Text('Your ToDos for your goal "${_shoppingList.goal}"'),
       ),
       body: ShoppingListView(
         shoppingList: _shoppingList,

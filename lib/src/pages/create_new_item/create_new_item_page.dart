@@ -20,7 +20,7 @@ class CreateNewShoppingListItemPage extends StatelessWidget {
       body: Column(
         children: [
           const Padding(
-            padding: EdgeInsets.all(5),
+            padding: EdgeInsets.all(12),
             child: Text(
                 "Just describe your plans for the day here and the app will magically turn them into a sorted list (with its own spice)"),
           ),
