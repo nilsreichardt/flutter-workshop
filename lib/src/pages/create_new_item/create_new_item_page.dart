@@ -17,8 +17,19 @@ class CreateNewShoppingListItemPage extends StatelessWidget {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Text('New daily goal'),
       ),
-      body: CreateNewItemForm(
-        shoppingList: shoppingList,
+      body: Column(
+        children: [
+          const Padding(
+            padding: EdgeInsets.all(5),
+            child: Text(
+                "Just describe your plans for the day here and the app will magically turn them into a sorted list (with its own spice)"),
+          ),
+          Expanded(
+            child: CreateNewItemForm(
+              shoppingList: shoppingList,
+            ),
+          ),
+        ],
       ),
     );
   }
