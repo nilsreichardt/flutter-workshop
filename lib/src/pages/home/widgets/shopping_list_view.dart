@@ -50,6 +50,7 @@ class _ShoppingListItemTileState extends State<_ShoppingListItemTile> {
     return ListTile(
       onTap: _toggleBought,
       title: Text(item.name),
+      subtitle: Text(item.reason),
       trailing: Checkbox(
         value: item.isBought,
         onChanged: (_) {
