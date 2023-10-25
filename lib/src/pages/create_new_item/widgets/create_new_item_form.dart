@@ -16,6 +16,7 @@ class CreateNewItemForm extends StatefulWidget {
 
 class _CreateNewItemFormState extends State<CreateNewItemForm> {
   late TextEditingController controller;
+  bool isLoading = false;
 
   @override
   void initState() {
@@ -56,6 +57,11 @@ class _CreateNewItemFormState extends State<CreateNewItemForm> {
                 ],
               ),
             ),
+            if (isLoading)
+              Image.network(
+                "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHdxdXV1NzZveW80MjkxcGtocW14eHp1bGY0cnZiamV3eXNqeGI0aiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o7bu8sRnYpTOG1p8k/giphy.gif",
+                height: 200,
+              ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 backgroundColor: Theme.of(context).colorScheme.primary,
@@ -63,12 +69,9 @@ class _CreateNewItemFormState extends State<CreateNewItemForm> {
                 minimumSize: const Size.fromHeight(50.0),
               ),
               onPressed: () async {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    duration: Duration(seconds: 100),
-                    content: Text('Creating day plan...'),
-                  ),
-                );
+                setState(() {
+                  isLoading = true;
+                });
 
                 if (!_formKey.currentState!.validate()) {
                   return;
