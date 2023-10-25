@@ -63,6 +63,13 @@ class _CreateNewItemFormState extends State<CreateNewItemForm> {
                 minimumSize: const Size.fromHeight(50.0),
               ),
               onPressed: () async {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    duration: Duration(seconds: 100),
+                    content: Text('Creating day plan...'),
+                  ),
+                );
+
                 if (!_formKey.currentState!.validate()) {
                   return;
                 }
@@ -78,6 +85,7 @@ class _CreateNewItemFormState extends State<CreateNewItemForm> {
                   return;
                 }
 
+                ScaffoldMessenger.of(context).hideCurrentSnackBar();
                 Navigator.of(context).pop();
               },
               child: const Text(
