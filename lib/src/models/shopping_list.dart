@@ -16,6 +16,10 @@ class ShoppingList {
       ),
     );
   }
+
+  void clear() {
+    items.clear();
+  }
 }
 
 class ShoppingListItem {

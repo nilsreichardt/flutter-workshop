@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shopping_list/src/logic/create_day_plan.dart';
 import 'package:shopping_list/src/models/shopping_list.dart';
 
 class CreateNewItemForm extends StatefulWidget {
@@ -14,17 +15,13 @@ class CreateNewItemForm extends StatefulWidget {
 }
 
 class _CreateNewItemFormState extends State<CreateNewItemForm> {
-  late final TextEditingController _nameController;
-
   @override
   void initState() {
     super.initState();
-    _nameController = TextEditingController();
   }
 
   @override
   void dispose() {
-    _nameController.dispose();
     super.dispose();
   }
 
@@ -48,7 +45,6 @@ class _CreateNewItemFormState extends State<CreateNewItemForm> {
                       }
                       return null;
                     },
-                    controller: _nameController,
                     decoration: const InputDecoration(
                       labelText: 'Daily goal',
                     ),
@@ -62,14 +58,17 @@ class _CreateNewItemFormState extends State<CreateNewItemForm> {
                 foregroundColor: Theme.of(context).colorScheme.onPrimary,
                 minimumSize: const Size.fromHeight(50.0),
               ),
-              onPressed: () {
+              onPressed: () async {
                 if (!_formKey.currentState!.validate()) {
                   return;
                 }
-                final name = _nameController.text;
-                widget.shoppingList.addItem(
-                  name: name,
-                );
+
+                widget.shoppingList.clear();
+
+                for (final item in items) {
+                  widget.shoppingList;
+                }
+
                 Navigator.of(context).pop();
               },
               child: const Text(
