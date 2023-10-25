@@ -49,7 +49,6 @@ class _ShoppingListItemTileState extends State<_ShoppingListItemTile> {
   Widget build(BuildContext context) {
     return ListTile(
       onTap: _toggleBought,
-      leading: Text('${item.quantity}x'),
       title: Text(item.name),
       trailing: Checkbox(
         value: item.isBought,

@@ -13,15 +13,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  ShoppingList _shoppingList = ShoppingList()
-    ..addItem(
-      name: 'Banana',
-      quantity: 3,
-    )
-    ..addItem(
-      name: 'Apple',
-      quantity: 5,
-    );
+  ShoppingList _shoppingList = ShoppingList();
 
   @override
   Widget build(BuildContext context) {

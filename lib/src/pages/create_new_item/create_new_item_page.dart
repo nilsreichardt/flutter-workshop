@@ -15,7 +15,7 @@ class CreateNewShoppingListItemPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text('Create new item'),
+        title: const Text('New daily goal'),
       ),
       body: CreateNewItemForm(
         shoppingList: shoppingList,

@@ -14,19 +14,16 @@ class CreateNewItemForm extends StatefulWidget {
 }
 
 class _CreateNewItemFormState extends State<CreateNewItemForm> {
-  late final TextEditingController _quantityController;
   late final TextEditingController _nameController;
 
   @override
   void initState() {
     super.initState();
-    _quantityController = TextEditingController();
     _nameController = TextEditingController();
   }
 
   @override
   void dispose() {
-    _quantityController.dispose();
     _nameController.dispose();
     super.dispose();
   }
@@ -45,25 +42,15 @@ class _CreateNewItemFormState extends State<CreateNewItemForm> {
               child: Column(
                 children: [
                   TextFormField(
-                    keyboardType: const TextInputType.numberWithOptions(
-                      decimal: false,
-                      signed: false,
-                    ),
-                    controller: _quantityController,
-                    decoration: const InputDecoration(
-                      labelText: 'Quantity',
-                    ),
-                  ),
-                  TextFormField(
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Please enter a name';
+                        return 'Please enter a daily goal';
                       }
                       return null;
                     },
                     controller: _nameController,
                     decoration: const InputDecoration(
-                      labelText: 'Name',
+                      labelText: 'Daily goal',
                     ),
                   ),
                 ],
@@ -79,16 +66,14 @@ class _CreateNewItemFormState extends State<CreateNewItemForm> {
                 if (!_formKey.currentState!.validate()) {
                   return;
                 }
-                final quantity = int.tryParse(_quantityController.text) ?? 1;
                 final name = _nameController.text;
                 widget.shoppingList.addItem(
                   name: name,
-                  quantity: quantity,
                 );
                 Navigator.of(context).pop();
               },
               child: const Text(
-                'Add',
+                'Set',
                 style: TextStyle(fontSize: 20),
               ),
             ),
